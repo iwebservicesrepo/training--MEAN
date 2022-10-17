@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <style>
+      .table1 {
+        border-collapse: collapse;
+      }
+      .score0 {
+        background-color: lightblue;
+        color: black;
+      }
+      .scorePlus0 {
+        background-color: lightgreen;
+        color: black;
+      }
+      .score-0 {
+        background-color: lightcoral;
+        color: black;
+      }
+    </style>
+    <div id="showData"></div>
+    <script>
+      let contestants = [
+        { name: "Einstein", score: 0 },
+        { name: "Newton", score: 0 },
+        { name: "Edison", score: 0 },
+      ];
+
+      let element = document.getElementById("showData");
+      show();
+
+      function show() {
+        element.innerHTML = showContestants();
+      }
+      function showContestants() {
+        let cMap = contestants.map(function (ele, index) {
+          let str = "<tr class='" + getClassContestant(ele.score) + "'>";
+          str +=
+            "<td>" +
+            ele.name +
+            " " +
+            "<span id='score" +
+            index +
+            "'>" +
+            ele.score +
+            '</span><button onclick="addScore(2,' +
+            index +
+            ')">+2</button><button onclick="addScore(-1,' +
+            index +
+            ')">-1</button></td>';
+          str += "</tr>";
+          //console.log(str);
+          return str;
+        });
+        let html = "<h2>Welcome to the Quiz Show</h2>";
+        html += '<table class="table1">' + cMap.join("") + "</table>";
+        return html;
+      }
+
+      function getClassContestant(currentScore) {
+        if (currentScore > 0) {
+          return "scorePlus0";
+        } else if (currentScore < 0) {
+          return "score-0";
+        } else return "score0";
+      }
+      function addScore(score, index) {
+        let ele = document.getElementById(`score${index}`);
+        let currentScore = +ele.innerHTML;
+
+        ele.innerHTML = currentScore + score;
+      }
+    </script>
+  </body>
+</html>

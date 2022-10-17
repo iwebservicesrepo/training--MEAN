@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <style>
+      .table1 {
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+      }
+      .td1 {
+        font-weight: bold;
+        border: 1px solid black;
+        text-align: center;
+      }
+      .th1 {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .india {
+        background-color: blue;
+        color: white;
+      }
+      .usa {
+        background-color: green;
+        color: white;
+      }
+      .france {
+        background-color: red;
+        color: white;
+      }
+    </style>
+    <h2>People</h2>
+    <div id="people"></div>
+    <button onclick="show()">Show</button>
+    <button onclick="hide()">Hide</button>
+    <br />
+    <button onclick="sortName()">Sort by Name</button>
+    <button onclick="sortCountry()">Sort by Country</button>
+    <button onclick="sortAge()">Sort by Age</button>
+    <br />
+    <button onclick="sortCountryAndName()">Sort by Country and Name</button>
+    <button onclick="sortCountryAndAge()">Sort by Country and Age</button>
+    <br />
+    <button onclick="country('India')">India</button>
+    <button onclick="country('USA')">USA</button>
+    <button onclick="country('France')">France</button>
+    <br />
+    <button onclick="styleByCountry()">Style by Country</button>
+    <button onclick="styleByAge()">Style by Age</button>
+    <script>
+      let countryCol = false;
+      let ageCol = false;
+      let peopleJSON = [
+        { name: "Jack", country: "USA", age: 35 },
+        { name: "Amit", country: "India", age: 38 },
+        { name: "Edward", country: "USA", age: 41 },
+        { name: "Vishal", country: "India", age: 30 },
+        { name: "Annie", country: "USA", age: 27 },
+        { name: "Nick", country: "France", age: 32 },
+        { name: "Francis", country: "France", age: 44 },
+        { name: "Preeti", country: "India", age: 25 },
+        { name: "Sophie", country: "France", age: 29 },
+        { name: "Harpreet", country: "India", age: 48 },
+        { name: "Bob", country: "USA", age: 21 },
+      ];
+      let element = document.getElementById("people");
+      function show() {
+        let arr1 = peopleJSON.map(function (ele) {
+          let str = "<tr class='" + getClassAge(ele.age) + "'>";
+          str +=
+            "<td class='" +
+            getClassCountry(ele.country) +
+            "'>" +
+            ele.name +
+            "</td>";
+          str +=
+            "<td class='" +
+            getClassCountry(ele.country) +
+            "'>" +
+            ele.country +
+            "</td>";
+          str +=
+            "<td class='" +
+            getClassCountry(ele.country) +
+            "'>" +
+            ele.age +
+            "</td>";
+          str +=
+            "<td><button class='remBtn'onclick='remove(\"" +
+            ele.name +
+            "\")'>Remove</button></td>";
+          str +=
+            "<td><button class='remBtn'onclick='addAge(\"" +
+            ele.name +
+            "\")'>Add 1 to Age</button></td>";
+          str += "</tr>";
+          // console.log(str);
+          return str;
+        });
+        let header = "<tr>";
+        header += "<th class='th1' onclick='sortName()''>Name</th>";
+        header += "<th class='th1' onclick='sortCountry()'>Country</th>";
+        header += "<th class='th1'onclick='sortAge()'>Age</th>";
+        header += "<th class='th1'></th>";
+        header += "<th class='th1'></th>";
+        header += "</tr>";
+        let html =
+          "<table class='table1'>" + header + arr1.join("") + "</table>";
+        element.innerHTML = html;
+      }
+      function hide() {
+        element.innerHTML = "";
+      }
+      function getClassCountry(country) {
+        if (country == "India" && countryCol) {
+          return "td1 india";
+        } else if (country == "USA" && countryCol) {
+          return "td1 usa";
+        } else if (country == "France" && countryCol) {
+          return "td1 france";
+        } else return "td1";
+      }
+      function styleByCountry() {
+        countryCol = true;
+        ageCol = false;
+        show();
+      }
+      function getClassAge(age) {
+        if (age <= 30 && ageCol) {
+          return "usa";
+        } else if (age > 30 && age <= 40 && ageCol) {
+          return "india";
+        } else if (age > 40 && ageCol) {
+          return "france";
+        } else return "";
+      }
+      function styleByAge() {
+        countryCol = false;
+        ageCol = true;
+        show();
+      }
+      function sortName() {
+        peopleJSON.sort(sortNamesAsc);
+        show();
+      }
+      function sortNamesAsc(name1, name2) {
+        return name1.name.localeCompare(name2.name);
+      }
+      function sortCountry() {
+        peopleJSON.sort(sortCountryAsc);
+        show();
+      }
+      function sortCountryAsc(n1, n2) {
+        return n1.country.localeCompare(n2.country);
+      }
+      function sortAge() {
+        peopleJSON.sort(sortAgeAsc);
+        show();
+      }
+      function sortAgeAsc(n1, n2) {
+        return n1.age - n2.age;
+      }
+      function sortCountryAndName() {
+        peopleJSON.sort(sortCountryNameAsc);
+        show();
+      }
+      function sortCountryNameAsc(n1, n2) {
+        if (n1.country.toLowerCase() > n2.country.toLowerCase()) {
+          return 1;
+        } else if (n1.country.toLowerCase() < n2.country.toLowerCase()) {
+          return -1;
+        } else {
+          return sortNamesAsc(n1, n2);
+        }
+      }
+      function sortCountryAndAge() {
+        peopleJSON.sort(sortCountryAgeAsc);
+        show();
+      }
+      function sortCountryAgeAsc(n1, n2) {
+        if (n1.country.toLowerCase() > n2.country.toLowerCase()) {
+          return 1;
+        } else if (n1.country.toLowerCase() < n2.country.toLowerCase()) {
+          return -1;
+        } else {
+          return sortAgeAsc(n1, n2);
+        }
+      }
+      function country(str1) {
+        let arr1 = peopleJSON.map(function (ele) {
+          if (ele.country == str1) {
+            let str = "<tr class='" + getClassAge(ele.age) + "'>";
+            str +=
+              "<td class='" +
+              getClassCountry(ele.country) +
+              "'>" +
+              ele.name +
+              "</td>";
+            str +=
+              "<td class='" +
+              getClassCountry(ele.country) +
+              "'>" +
+              ele.country +
+              "</td>";
+            str +=
+              "<td class='" +
+              getClassCountry(ele.country) +
+              "'>" +
+              ele.age +
+              "</td>";
+            str +=
+              "<td><button class='remBtn'onclick='remove(\"" +
+              ele.name +
+              "\")'>Remove</button></td>";
+            str +=
+              "<td><button class='remBtn'onclick='addAge(\"" +
+              ele.name +
+              "\")'>Add 1 to Age</button></td>";
+            str += "</tr>";
+            // console.log(str);
+            return str;
+          }
+        });
+        let header1 = "<tr>";
+        header1 += "<th class='th1' onclick='sortName()''>Name</th>";
+        header1 += "<th class='th1' onclick='sortCountry()'>Country</th>";
+        header1 += "<th class='th1'onclick='sortAge()'>Age</th>";
+        header1 += "<th class='th1'></th>";
+        header1 += "<th class='th1'></th>";
+        header1 += "</tr>";
+        let html1 =
+          "<table class='table1'>" + header1 + arr1.join("") + "</table>";
+        element.innerHTML = html1;
+      }
+      function remove(name) {
+        console.log("Remove", name);
+        let index = peopleJSON.findIndex(function (st) {
+          return st.name == name;
+        });
+        peopleJSON.splice(index, 1);
+        show();
+      }
+    </script>
+  </body>
+</html>

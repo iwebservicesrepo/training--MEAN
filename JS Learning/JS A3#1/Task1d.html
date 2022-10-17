@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <body>
+      <style>
+        .showBlue {
+          background-color: blue;
+          color: white;
+        }
+        .showGreen {
+          background-color: green;
+          color: white;
+        }
+      </style>
+      <h3 id="name" class="showBlue">Seller: Jack Smith</h3>
+      <h3 id="email" class="showBlue">Email: jack@email.com</h3>
+      <h3 id="mobile" class="showBlue">Mobile: 3542376</h3>
+      <button onclick="changeNameStyle()">Change Name Style</button>
+      <button onclick="allGreenStyle()">All Green</button>
+      <button onclick="clearStyles()">Clear Styles</button>
+      <script>
+        const ids = ["name", "email", "mobile"];
+        function changeNameStyle() {
+          let element = document.getElementById("name");
+          element.className = "showGreen";
+        }
+
+        function allGreenStyle() {
+          for (let i = 0; i < ids.length; i++) {
+            let element = document.getElementById(ids[i]);
+            element.className = "showGreen";
+          }
+        }
+        function clearStyles() {
+          for (let i = 0; i < ids.length; i++) {
+            let element = document.getElementById(ids[i]);
+            element.className = "";
+          }
+        }
+      </script>
+    </body>
+  </head>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <style>
+      .table1 {
+        border-collapse: collapse;
+      }
+      .col1 {
+        border: 1px solid black;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-weight: bold;
+      }
+      .th1 {
+        background-color: blue;
+        color: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .addToCart {
+        background-color: lightgreen;
+        color: black;
+      }
+      .remove {
+        background-color: lightcoral;
+        color: black;
+      }
+    </style>
+    <div id="showData"></div>
+    <script>
+      let products1 = [
+        { prod: "Pepsi", price: 15, stock: 20 },
+        { prod: "Coke", price: 18, stock: 30 },
+        { prod: "Maggi", price: 10, stock: 35 },
+        { prod: "Nescafe", price: 40, stock: 10 },
+        { prod: "Dairy Milk", price: 30, stock: 12 },
+        { prod: "Frito Lays", price: 20, stock: 15 },
+      ];
+      let cart = [];
+      show();
+      function show() {
+        let s1 = showProducts();
+        let s2 = showCart();
+        let element = document.getElementById("showData");
+        element.innerHTML = s1 + s2;
+      }
+      function showProducts() {
+        let rMap = products1.map(function (ele) {
+          let str = "<tr>";
+          str += '<td class="col1">' + ele.prod + "</td>";
+          str += '<td class="col1">' + ele.price + "</td>";
+          str += '<td class="col1">' + ele.stock + "</td>";
+          str +=
+            '<td class="col1"><button class="like" onclick=addToCart("' +
+            ele.prod.replace(" ", "-") +
+            '")>Add to Cart</button></td>';
+          str += "</tr>";
+          //   console.log(str);
+          return str;
+        });
+        let header = "<tr>";
+        header += '<th class="th1">Product</th>';
+        header += '<th class="th1">Price</th>';
+        header += '<th class="th1">Stock</th>';
+        header += '<th class="th1"></th>';
+        header += "</tr>";
+        let html = "<h2>List of Riders</h2>";
+        html += '<table class="table1">' + header + rMap.join("") + "</table>";
+        return html;
+      }
+      function showCart() {
+        let fMap = cart.map(function (ele) {
+          let str = "<tr>";
+          str += '<td class="col1">' + ele.product + "</td>";
+          str += '<td class="col1">' + ele.quantity + "</td>";
+          str += '<td class="col1">' + ele.price + "</td>";
+          str += '<td class="col1">' + ele.amount + "</td>";
+          str +=
+            '<td class="col1"><button class="remove" onclick=remove("' +
+            ele.product.replace(" ", "-") +
+            '")>Remove from Cart</button></td>';
+          str += "</tr>";
+          //   console.log(str);
+          return str;
+        });
+        let header = "<tr>";
+        header += '<th class="th1">Product</th>';
+        header += '<th class="th1">Quantity</th>';
+        header += '<th class="th1">Price</th>';
+        header += '<th class="th1">Amount</th>';
+        header += '<th class="th1"></th>';
+        header += "</tr>";
+        let html = "<h2>My Cart</h2>";
+        if (cart.length == 0) html += "<h3>Cart is empty</h3>";
+        else {
+          let quantity = cart.reduce(function (acc, curr) {
+            return acc + curr.quantity;
+          }, 0);
+          let amount = cart.reduce(function (acc, curr) {
+            let amt = curr.quantity * curr.price;
+            return acc + amt;
+          }, 0);
+          html +=
+            "<h3>Number of Items: " +
+            quantity +
+            " Bill Amount: " +
+            amount +
+            "</h3>";
+          html +=
+            '<table class="table1">' + header + fMap.join("") + "</table>";
+        }
+        return html;
+      }
+      function addToCart(product) {
+        //to resolve the space error
+        product = product.replace("-", " ");
+        let p1 = cart.find(function (ele) {
+          return ele.product == product;
+        });
+        if (p1) {
+          // console.log(
+          //   "amount",
+          //   p1.price * (p1.quantity + 1),
+          //   p1.amount,
+          //   p1.quantity + 1,
+          //   p1.price
+          // );
+          p1.amount = p1.price * (p1.quantity + 1);
+          p1.quantity++;
+        } else {
+          let productCart = products1.find((ele) => {
+            //console.log("find", product, ele.prod);
+            return ele.prod == product;
+          });
+
+          //console.log("cart item", productCart);
+          let item = {
+            product: productCart.prod,
+            price: productCart.price,
+            quantity: 1,
+            amount: parseInt(productCart.price) * 1,
+          };
+
+          cart.push(item);
+        }
+        //console.log(cart);
+        show();
+      }
+      function remove(product) {
+        const index = cart.findIndex(function (ele) {
+          product = product.replace("-", " ");
+          return ele.product == product;
+        });
+
+        if (index >= 0) {
+          cart.splice(index, 1);
+        }
+        show();
+      }
+    </script>
+  </body>
+</html>
