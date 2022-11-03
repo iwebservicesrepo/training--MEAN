@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <input type="text" id="text1" placeholder="Enter Text" maxlength="6" />
+    <button onclick="display()">Display</button>
+    <script>
+      function display() {
+        let txtField = document.getElementById("text1");
+        console.log(txtField.value);
+        txtField.value = "";
+        txtField.placeholder = "Get Name";
+        txtField.maxLength = "10";
+        txtField.readOnly = true;
+      }
+    </script>
+  </body>
+</html>

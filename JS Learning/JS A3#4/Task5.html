@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 5</title>
+  </head>
+  <body>
+    <input
+      type="radio"
+      name="tech"
+      value="Angular"
+      id="r1"
+      onchange="moreFields()"
+    />Angular
+    <input
+      type="radio"
+      name="tech"
+      value="React"
+      id="r2"
+      onchange="moreFields()"
+    />React
+    <input
+      type="radio"
+      name="tech"
+      value="JavaScript"
+      id="r3"
+      onchange="moreFields()"
+    />JavaScript
+    <div id="moreFields"></div>
+    <script>
+      function moreFields() {
+        const angular = document.getElementById("r1");
+        const react = document.getElementById("r2");
+        const js = document.getElementById("r3");
+        const addFields = document.getElementById("moreFields");
+        if (react.checked) {
+          addFields.innerHTML =
+            '<input type="checkbox" id="react">Do you know React Native?';
+        } else if (js.checked) {
+          addFields.innerHTML =
+            '<input type="Radio" name="bootstrap" value="bootstrap3">Bootstrap 3 <input type="Radio" name="bootstrap" value="bootstrap4">Bootstrap 4';
+        } else if (angular.checked) {
+          addFields.innerHTML =
+            '<select id="dd01"> <option disabled selected>Select the Angular Version</option> <option value="1">10</option> <option  value="2">11</option><option value="3">12</option></select>';
+        }
+      }
+    </script>
+  </body>
+</html>

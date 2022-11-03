@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 2</title>
+  </head>
+  <body>
+    <style>
+      .table1 {
+        border-collapse: collapse;
+      }
+      .td1 {
+        border: 1px solid black;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    </style>
+    <div id="products"></div>
+    <script>
+      let products = [
+        { name: "Maggi", quantity: 28 },
+        { name: "Perk", quantity: 7 },
+        { name: "Gems", quantity: 11 },
+        { name: "Lindt", quantity: 4 },
+        { name: "Nutties", quantity: 20 },
+      ];
+      show();
+      function show() {
+        let s1 = showForm();
+        let s2 = showProducts();
+        let div = document.getElementById("products");
+        div.innerHTML = s1 + s2;
+      }
+      function showForm() {
+        let str = 'Name:<input type="text" id="name"><br/>';
+        str += 'Quantity:<input type="text" id="qty"><br/>';
+        str += '<button onclick="addProducts()">Add Product</button>';
+        return str;
+      }
+      function showProducts() {
+        let prMap = products.map(function (ele) {
+          let str = "<tr>";
+          str += '<td class="td1">' + ele.name + "</td>";
+          str += '<td class="td1">' + ele.quantity + "</td>";
+          str +=
+            '<td class="td1"><button class="remove" onclick=remove("' +
+            ele.name +
+            '")>Remove</button></td>';
+          str +=
+            '<td class="td1"><button class="remove" onclick=edit("' +
+            ele.name +
+            '")>Edit</button></td>';
+          str += "</tr>";
+          return str;
+        });
+        let html = '<table class="table1">' + prMap.join("") + "</table>";
+        return html;
+      }
+      function addProducts() {
+        let st = {};
+        st.name = document.getElementById("name").value;
+        st.quantity = document.getElementById("qty").value;
+        products.push(st);
+        show();
+      }
+      function remove(product) {
+        let index = products.findIndex(function (ele) {
+          return ele.name == product;
+        });
+        if (index >= 0) {
+          products.splice(index, 1);
+        }
+        show();
+      }
+      function edit(name) {
+        console.log(name);
+        let st = products.find(function (st1) {
+          return st1.name == name;
+        });
+        let str =
+          'Name<input type="text" id="name" readOnly value="' +
+          st.name +
+          '"><br/>';
+        str +=
+          'Quantity<input type="text" id="qty" value="' +
+          st.quantity +
+          '"><br/>';
+        str += '<button onclick="edit2()">Update</button>';
+        let div = document.getElementById("products");
+        div.innerHTML = str;
+      }
+      function edit2() {
+        let name = document.getElementById("name").value;
+        let st = products.find(function (st1) {
+          return st1.name == name;
+        });
+        st.quantity = document.getElementById("qty").value;
+        show();
+      }
+    </script>
+  </body>
+</html>

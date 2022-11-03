@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 2</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      placeholder="Number 1"
+      id="num1"
+      onkeyup="sum()"
+    />+<input type="text" placeholder="Number 2" id="num2" onkeyup="sum()" /> =
+    <input type="text" placeholder="Sum" id="sum" />
+    <div id="sum"></div>
+    <script>
+      let element = document.getElementById("sum");
+      function sum() {
+        let str =
+          '<input type="text" placeholder="Number 1" id="num1" onkeyup="sum()"/>+<input type="text" placeholder="Number 2" id="num2" onkeyup="sum()" /> =<input type="text" placeholder="Sum" id="sum" />';
+        element.innerHTML = str;
+
+        let txtFirstNum = document.getElementById("num1").value;
+        let txtSecondNum = document.getElementById("num2").value;
+        if (txtFirstNum == "") {
+          txtFirstNum = 0;
+        }
+        if (txtSecondNum == "") {
+          txtSecondNum = 0;
+        }
+        if (isNaN(txtFirstNum) || isNaN(txtSecondNum)) {
+          document.getElementById("sum").value = "Input correct numbers";
+        } else {
+          let result = parseInt(txtFirstNum) + parseInt(txtSecondNum);
+          document.getElementById("sum").value = result;
+        }
+      }
+    </script>
+  </body>
+</html>

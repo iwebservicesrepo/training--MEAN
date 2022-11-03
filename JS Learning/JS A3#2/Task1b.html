@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <select id="dd01">
+      <option disabled>Select the Course</option>
+      <option value="1">JavaScript</option>
+      <option selected value="2">React</option>
+      <option value="3">Angular</option>
+    </select>
+    <select id="dd02">
+      <option disabled selected>Select</option>
+      <option>JavaScript</option>
+      <option>React</option>
+      <option>Angular</option>
+    </select>
+    <button onclick="display()">Display</button>
+    <script>
+      function display() {
+        let dd1 = document.getElementById("dd01");
+        console.log(dd1.value);
+        let dd2 = document.getElementById("dd02");
+        console.log(dd2.value);
+        dd1.value = "1";
+        dd2.value = "React";
+      }
+    </script>
+  </body>
+</html>

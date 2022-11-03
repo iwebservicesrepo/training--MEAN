@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 6</title>
+  </head>
+  <body>
+    <style>
+      .normal {
+        background-color: lightblue;
+        color: black;
+      }
+      .offers {
+        background-color: lightcoral;
+        color: black;
+      }
+    </style>
+    <div id="product"></div>
+    <script>
+      let selectedIndex = null;
+      let str = "";
+      let element = document.getElementById("product");
+      const products = [
+        {
+          name: "Maggi",
+          price: 25,
+          offers: ["Citi Credit Cards", "ICICI Card"],
+        },
+        { name: "Perk", price: 10, offers: ["Axis Credit Cards", "PayTM"] },
+        { name: "Gems", price: 15, offers: ["SBI Card", "PhonePe", "PayTM"] },
+        { name: "Lindt", price: 90, offers: [] },
+        { name: "Nutties", price: 12, offers: ["Citi Credit Cards "] },
+        { name: "Pepsi", price: 15, offers: ["PhonePe", "PayTM"] },
+        { name: "Coca Cola", price: 15, offers: ["SBI Card"] },
+        { name: "Dairy Milk", price: 10, offers: [] },
+      ];
+      show(null);
+      function show(elementIndex) {
+        str = "";
+        console.log({ elementIndex, selectedIndex, str });
+        if (selectedIndex === elementIndex) {
+          selectedIndex = null;
+        } else {
+          selectedIndex = elementIndex;
+        }
+        products.map((ele, index) => {
+          if (index == selectedIndex) {
+            console.log("offer :: ===>", ele.offers);
+            str +=
+              "<p class='offers'>Name:" +
+              ele.name +
+              " Price:" +
+              ele.price +
+              "<br/>";
+            if (ele.offers.length) {
+              str +=
+                ele.offers.length + " Offers from <br/>" + ele.offers + "<br/>";
+            } else {
+              str += "<br/>No offers<br/>";
+            }
+            str +=
+              "<button onclick=show(" + index + ")>Hide Offers</button></p>";
+            return str;
+          } else {
+            str +=
+              "<p class='normal'>Name:" +
+              ele.name +
+              " Price:" +
+              ele.price +
+              "<br/>";
+            str +=
+              "<button onclick=show(" + index + ")>Show Offers</button></p>";
+            return str;
+          }
+        });
+        let html = "<h2>Product Details</h2>" + str;
+        element.innerHTML = html;
+      }
+      // function showOffers() {
+      //   let pMap = products.map(function (ele) {
+      // if (ele.offers.length != 0) {
+      //   let str =
+      //     "<p class='offers'>Name:" +
+      //     ele.name +
+      //     " Price:" +
+      //     ele.price +
+      //     "<br/>" +
+      //     ele.offers.length +
+      //     " Offers from <br/>" +
+      //     ele.offers +
+      //     "<br/>";
+      //   str += "<button onclick=show()>Hide Offers</button></p>";
+      //   return str;
+      // } else {
+      //   let str =
+      //     "<p class='normal'>Name:" +
+      //     ele.name +
+      //     " Price:" +
+      //     ele.price +
+      //     "<br/>No offers<br/>";
+      //   str += "<button onclick=show()>Hide Offers</button></p>";
+      //   return str;
+      // }
+      //   });
+      //   let html = "<h2>Product Details</h2>" + pMap.join("");
+      //   element.innerHTML = html;
+      // }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1a</title>
+  </head>
+  <body>
+    What do you know?<br />
+    <input type="checkbox" id="cb1" onchange="changeCB(this)" />Javascript<br />
+    <input type="checkbox" id="cb2" onchange="changeCB(this)" />React<br />
+    <input type="checkbox" id="cb3" onchange="changeCB(this)" />Node<br />
+    <button onclick="showChecked()">Show Checked Values</button><br />
+    <button onclick="checkAll(true)">Check All</button>
+    <button onclick="checkAll(false)">Uncheck All</button><br />
+    <button onclick="disableAll(true)">Disable All</button>
+    <button onclick="disableAll(false)">Enable All</button><br />
+    <script>
+      function showChecked() {
+        let cb1 = document.getElementById("cb1");
+        let cb2 = document.getElementById("cb2");
+        let cb3 = document.getElementById("cb3");
+        console.log("cb1", cb1.checked);
+        console.log("cb2", cb2.checked);
+        console.log("cb3", cb3.checked);
+      }
+      function changeCB(elem) {
+        console.log(elem.id, elem.checked, event);
+      }
+      function checkAll(bool) {
+        document.getElementById("cb1").checked = bool;
+        document.getElementById("cb2").checked = bool;
+        document.getElementById("cb3").checked = bool;
+      }
+      function disableAll(bool) {
+        document.getElementById("cb1").disabled = bool;
+        document.getElementById("cb2").disabled = bool;
+        document.getElementById("cb3").disabled = bool;
+      }
+    </script>
+  </body>
+</html>

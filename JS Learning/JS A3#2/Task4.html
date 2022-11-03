@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 4</title>
+  </head>
+  <body>
+    <style>
+      .table1 {
+        border-collapse: collapse;
+      }
+      .th1 {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-weight: lighter;
+      }
+      .td1 {
+        border: 1px solid white;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .newWeightGreater {
+        background-color: red;
+        color: white;
+      }
+      .newWeightLower {
+        background-color: green;
+        color: white;
+      }
+      .newWeightSame {
+        background-color: grey;
+        color: white;
+      }
+    </style>
+    <div id="people"></div>
+    <script>
+      let weights = [];
+      for (let i = 40; i <= 100; i++) {
+        weights.push(i);
+      }
+
+      console.log(weights);
+      let people = [
+        { name: "Jack", oldWeight: 65, newWeight: 68 },
+        { name: "Mary", oldWeight: 55, newWeight: 53 },
+        { name: "Bob", oldWeight: 71, newWeight: 66 },
+        { name: "Steve", oldWeight: 62, newWeight: 68 },
+        { name: "James", oldWeight: 81, newWeight: 77 },
+        { name: "Julia", oldWeight: 52, newWeight: 52 },
+        { name: "Michael", oldWeight: 68, newWeight: 68 },
+        { name: "Bill", oldWeight: 60, newWeight: 61 },
+        { name: "Sonny", oldWeight: 61, newWeight: 60 },
+      ];
+      show();
+      function show() {
+        let s1 = filterForm();
+        let s2 = showTable();
+        let element = document.getElementById("people");
+        element.innerHTML = s1 + s2;
+      }
+      function filterForm() {
+        let str =
+          'New Weight between:<input type="text" id="minWeight" placeholder="Enter Min Weight">' +
+          '<input type="text" id="maxWeight" placeholder="Enter Max Weight"><br/>';
+        str += '<button onclick="filter(),showFilter()">Filter</button>';
+        str += '<button onclick="show()">Clear Filter</button>';
+        str += '<button onclick="addPeopleForm()">Add New Member</button>';
+        return str;
+      }
+      function showTable() {
+        let pMap = people.map(function (ele) {
+          let str =
+            "<tr class='" + getClassWeight(ele.newWeight, ele.oldWeight) + "'>";
+          str += '<td class="td1">' + ele.name + "</td>";
+          str += '<td class="td1">' + ele.oldWeight + "</td>";
+          str += '<td class="td1">' + ele.newWeight + "</td>";
+          str += "</tr>";
+          return str;
+        });
+        let header = "<tr>";
+        header += '<th class="th1">Name</th>';
+        header += '<th class="th1">Old Weight</th>';
+        header += '<th class="th1">New Weight</th>';
+        header += "</tr>";
+        let html =
+          '<table class="table1">' + header + pMap.join("") + "</table>";
+        return html;
+      }
+      function getClassWeight(newWeight, oldWeight) {
+        if (newWeight > oldWeight) {
+          return "newWeightGreater";
+        } else if (newWeight < oldWeight) {
+          return "newWeightLower";
+        } else {
+          return "newWeightSame";
+        }
+      }
+      function showFilter() {
+        let s1 = filterForm();
+        let s2 = filter();
+        let element = document.getElementById("people");
+        element.innerHTML = s1 + s2;
+      }
+
+      function filter() {
+        let str1 = document.getElementById("minWeight").value;
+        let str2 = document.getElementById("maxWeight").value;
+        console.log(str1, str2);
+        let arr1 = people.map(function (ele) {
+          if (ele.newWeight >= str1 && ele.newWeight <= str2) {
+            let str =
+              "<tr class='" +
+              getClassWeight(ele.newWeight, ele.oldWeight) +
+              "'>";
+            str += "<td class='td1'>" + ele.name + "</td>";
+            str += "<td class='td1'>" + ele.oldWeight + "</td>";
+            str += "<td class='td1'>" + ele.newWeight + "</td>";
+            str += "</tr>";
+            // console.log(str);
+            return str;
+          }
+        });
+        let header1 = "<tr>";
+        header1 += "<th class='th1' onclick='sortName()''>Name</th>";
+        header1 += "<th class='th1' onclick='sortCountry()'>Old Weight</th>";
+        header1 += "<th class='th1'onclick='sortAge()'>New Weight</th>";
+        header1 += "</tr>";
+        let html1 =
+          "<table class='table1'>" + header1 + arr1.join("") + "</table>";
+        return html1;
+      }
+
+      function addPeopleForm() {
+        let str = 'Name:<input type="text" id="name"><br/>';
+        str += makeWeightDD(weights, "Select Old Weight", weights) + "<br/>";
+        str += makeWeightDD(weights, "Select New Weight", weights) + "<br/>";
+        str += '<button onclick="addPeople()">Add</button>';
+        let element = document.getElementById("people");
+        element.innerHTML = str;
+      }
+      function makeWeightDD(arr, firstItem, selValue) {
+        const arr1 = arr.map(function (opt) {
+          if (opt == selValue) {
+            return "<option selected>" + opt + "</option>";
+          } else {
+            return "<option>" + opt + "</option>";
+          }
+        });
+        let first = "<option disabled selected>" + firstItem + "</option>";
+        if (selValue != "") {
+          let first = "<option disabled selected>" + firstItem + "</option>";
+          let s1 = '<select id="weight">' + first + arr1.join("") + "</select>";
+          return s1;
+        }
+      }
+    </script>
+  </body>
+</html>

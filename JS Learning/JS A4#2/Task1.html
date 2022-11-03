@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1</title>
+  </head>
+  <body>
+    <script>
+      //a
+      function addFn(x, y) {
+        console.log("Standard Function");
+        return x + y;
+      }
+      const addFnExp = function (x, y) {
+        console.log("Function Expression");
+        return x + y;
+      };
+      console.log(addFn(1, 2));
+      console.log(addFnExp(1, 2));
+
+      const addVar = addFnExp;
+      console.log(addVar(2, 3));
+      //b
+      const multiplyFn = function (x, y) {
+        console.log("Function Expression");
+        return x * y;
+      };
+      const multiplyArrowFn = (x, y) => {
+        console.log("Arrow Function");
+        return x * y;
+      };
+      const multiplyArrowFn1 = (x, y) => x * y;
+
+      console.log(multiplyFn(5, 6));
+      console.log(multiplyArrowFn(5, 6));
+      console.log(multiplyArrowFn1(5, 6));
+      //c
+      const doubleFn = function (x) {
+        console.log("Function Expression");
+        return 2 * x;
+      };
+      const doubleArrowFn = (x) => {
+        console.log("Arrow Function");
+        return 2 * x;
+      };
+      const doubleArrowFn2 = (x) => 2 * x;
+      console.log(doubleFn(4));
+      console.log(doubleArrowFn(4));
+      console.log(doubleArrowFn2(4));
+      //d
+      const getNum = function () {
+        console.log("Function Expression");
+        return 15;
+      };
+      console.log(getNum());
+      const getNumArrowFn = () => {
+        console.log("Arrow Function");
+        return 15;
+      };
+      console.log(getNumArrowFn());
+      const getNumArrowFn2 = () => 15;
+      console.log(getNumArrowFn2());
+      //e
+      const putData = function (inputName, inputAge) {
+        console.log("Function Expression");
+        return { name: inputName, age: inputAge };
+      };
+      console.log(putData("Jack", 23));
+      const putDataArrowFn = (inputName, inputAge) => {
+        console.log("Arrow Function");
+        return { name: inputName, age: inputAge };
+      };
+      console.log(putDataArrowFn("Jack", 23));
+      const putDataArrowFn2 = (inputName, inputAge) => ({
+        name: inputName,
+        age: inputAge,
+      });
+      console.log(putDataArrowFn2("Jack", 23));
+    </script>
+  </body>
+</html>

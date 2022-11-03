@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 4</title>
+  </head>
+  <body>
+    <script>
+      //a
+      const startingWithA = (arr) => {
+        let newArr = arr.find((n) => {
+          return n.startsWith("A");
+        });
+        return newArr;
+      };
+      console.log(startingWithA(["Mike", "Jack", "Anna", "Steve"]));
+      //b
+      const strLen = (arr) => {
+        let newArr = arr.findIndex((n) => {
+          return n.length > 7;
+        });
+        return newArr;
+      };
+      console.log(strLen(["React", "Flutter", "MongoDB", "JavaScript"]));
+      //c
+      const filterStr = (arr) => {
+        let newArr = arr.filter((n) => {
+          return n.includes("x");
+        });
+        return newArr;
+      };
+      console.log(filterStr(["xylo", "torex", "hello", "xmen", "wow"]));
+      //d
+      const lengthStr = (arr) => {
+        let newArr = arr.map((n) => {
+          return n.length;
+        });
+        return newArr;
+      };
+      console.log(lengthStr(["Hello", "How", "Are"]));
+      //e
+      const firstChar = (arr) => {
+        const newArr = arr.reduce((acc, curr) => {
+          return (acc += curr === "" ? "X" : curr[0]);
+        }, "");
+        return newArr;
+      };
+      console.log(firstChar(["Hello", "this", "is", "", "", "me"]));
+      //f
+      const joinArr = (arr) => {
+        const newArr = arr.map((element) => {
+          return "<p>" + element + "</p>";
+        });
+        return newArr;
+      };
+      console.log(joinArr(["A", "bcd", "XYZ"]));
+    </script>
+  </body>
+</html>

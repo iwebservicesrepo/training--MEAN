@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1c</title>
+  </head>
+  <body>
+    <div id="divDD"></div>
+    <button onclick="makeDD()">Make DropDown</button>
+    <button onclick="showDD()">Show DropDown Data</button>
+    <script>
+      let empData = [
+        { name: "Steve", empId: "BM222" },
+        { name: "George", empId: "BM405" },
+        { name: "Mary", empId: "CT188" },
+        { name: "Anna", empId: "AK534" },
+        { name: "Jack", empId: "CT029" },
+      ];
+      function makeDD() {
+        let div = document.getElementById("divDD");
+        let html = makeDDOptions(empData, "Select Employee", "Mary");
+        div.innerHTML = html;
+      }
+      function showDD() {
+        let dd = document.getElementById("dd1");
+        console.log(dd.value);
+      }
+      function makeDDOptions(arr, valOnTop, selVal) {
+        const optArr = arr.map(function (opt) {
+          if (opt.name == selVal)
+            return (
+              "<option selected value='" +
+              opt.empId +
+              "'>" +
+              opt.name +
+              "</option>"
+            );
+          else
+            return (
+              "<option value='" + opt.empId + "'>" + opt.name + "</option>"
+            );
+        });
+        let topStr = "";
+        if (selVal == "") {
+          topStr = "<option selected disabled>" + valOnTop + "</option>";
+        } else {
+          topStr = "<option disabled>" + valOnTop + "</option>";
+        }
+        //console.log(topStr);
+        let str = "<select id='dd1'>" + topStr + optArr.join("") + "</select>";
+        //console.log(str);
+        return str;
+      }
+    </script>
+  </body>
+</html>

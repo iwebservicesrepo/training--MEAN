@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1k</title>
+  </head>
+  <body>
+    <script>
+      const str = ["a", "b", "ab", "c", "aaaa", "baba"];
+      const arr = str.map(function (ele) {
+        return ele.startsWith("a") ? ele : "x" + ele;
+      });
+      console.log(arr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 7</title>
+  </head>
+  <body>
+    <script>
+      const students = [
+        { name: "Dave", js: 59, node: 67 },
+        { name: "George", js: 58, react: 82, node: 65 },
+        { name: "William", node: 68 },
+        { name: "Anita", react: 65, node: 56 },
+        { name: "Steve", js: 56, react: 51 },
+        { name: "Julia", js: 47 },
+        { name: "Mary", js: 72, react: 55, node: 81 },
+      ];
+      const newStudents = students.map((stu) => {
+        const { js = 0, react = 0, node = 0 } = stu;
+        const maxMarks = Math.max(js, react, node);
+        const newStudentJSON = { ...stu, maxMarks: maxMarks };
+        return newStudentJSON;
+      });
+      console.log(newStudents);
+      console.log(students);
+    </script>
+  </body>
+</html>

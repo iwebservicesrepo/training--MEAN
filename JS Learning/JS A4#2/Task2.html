@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 2</title>
+  </head>
+  <body>
+    <script>
+      //a
+      const square = (number) => {
+        return number * number;
+      };
+      console.log(square(6));
+      //b
+      const squareAndCube = (number) => {
+        console.log(
+          "Square ",
+          number * number,
+          "Cube ",
+          number * number * number
+        );
+      };
+      squareAndCube(6);
+      //c
+      const largerNumber = (num1, num2) => {
+        return num1 > num2 ? num1 : num2;
+      };
+      console.log("Larger Number is ", largerNumber(10, 20));
+      //d
+      const stringUpper = (str) => {
+        return str.toLocaleUpperCase();
+      };
+      console.log("String to upper case is ", stringUpper("hello world"));
+      //e
+      const equalNum = (num1, num2, num3) => {
+        return num1 === num2 && num1 === num3 ? true : false;
+      };
+      console.log(equalNum(21, 21, 2));
+      //f
+      const factors = (number) => {
+        let count = 0;
+        for (let i = 1; i <= number; i++) {
+          number % i == 0 ? count++ : count;
+        }
+        console.log(count);
+      };
+      factors(4);
+      //g
+      const numToString = (number) => {
+        let str = "";
+        for (let i = 0; i < number; i++) {
+          str += "A";
+        }
+        console.log(str);
+      };
+      numToString(5);
+      //h
+      const removeChar = (string, char) => {
+        return string.split(char);
+      };
+      console.log(removeChar("Hello", "o").join(""));
+      //i
+      const pattern = (number) => {
+        let str = "";
+        for (let i = 1; i <= number; i++) {
+          i % 2 == 1 ? (str += "A") : (str += "B");
+        }
+        console.log(str);
+      };
+      pattern(4);
+      //j
+      const different = (string) => {};
+      //k
+      const JSON = (string) => {
+        return { txt: string };
+      };
+      console.log(JSON("Hello World"));
+      //l
+      const createJSON = (str1, str2) => {
+        return { txt1: str1, txt2: str2 };
+      };
+      console.log(createJSON("Hello World", "This is JS"));
+    </script>
+  </body>
+</html>

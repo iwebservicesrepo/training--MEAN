@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1g</title>
+  </head>
+  <body>
+    <script>
+      const sts = [
+        { gr1: "A", gr2: "B" },
+        { gr1: "", gr2: "C" },
+        { gr1: "B", gr2: "" },
+        { gr1: "C", gr2: "B" },
+        { gr1: "", gr2: "" },
+      ];
+      const arr = sts.map(function (ele) {
+        return { finalGrade: ele.gr1 || ele.gr2 || "D" };
+      });
+      console.log(arr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 3</title>
+  </head>
+  <body>
+    <div id="task3"></div>
+    <script>
+      let element = document.getElementById("task3");
+      let str =
+        '<input type="text" id="only0or1" placeholder="Only 0 or 1" onkeyup="only0or1(id)"/><br /><input type="text" id="noborB" placeholder="No b or B" onkeyup="notB(id)"/><br /><input type="text" id="noSpecialChar" placeholder="No Special Characters" onkeyup="noSplChar(id)"><br /><input type="text" id="onlyDigits" placeholder="Only digits +-*/." onkeyup="onlyDigits(id)">';
+      console.log(str);
+      element.innerHTML = str;
+      function only0or1(id) {
+        let txtValue = document.getElementById(id).value;
+        txtValLength = txtValue.length;
+        //console.log(txtValLength);
+        lastNum = txtValue.charAt(txtValLength - 1);
+        //console.log(lastNum);
+        if (lastNum == 0 || lastNum == 1) {
+          document.getElementById(id).value = txtValue;
+        } else {
+          document.getElementById(id).value = "";
+        }
+      }
+      function notB(id) {
+        let txtValue = document.getElementById(id).value;
+        txtValLength = txtValue.length;
+        lastVal = txtValue.charAt(txtValLength - 1);
+        if (lastVal == "b" || lastVal == "B") {
+          document.getElementById(id).value = "";
+        } else {
+          document.getElementById(id).value = txtValue;
+        }
+      }
+      function noSplChar(id) {
+        let txtValue = document.getElementById(id).value;
+        txtValLength = txtValue.length;
+        lastVal = txtValue.charAt(txtValLength - 1);
+        if (
+          (lastVal >= 0 && lastVal <= 9) ||
+          (lastVal >= "a" && lastVal <= "z") ||
+          (lastVal >= "A" && lastVal <= "Z")
+        ) {
+          document.getElementById(id).value = txtValue;
+        } else {
+          document.getElementById(id).value = "";
+        }
+      }
+      function onlyDigits(id) {
+        let txtValue = document.getElementById(id).value;
+        txtValLength = txtValue.length;
+        lastVal = txtValue.charAt(txtValLength - 1);
+        if (
+          (lastVal >= 0 && lastVal <= 9) ||
+          lastVal == "+" ||
+          lastVal == "-" ||
+          lastVal == "*" ||
+          lastVal == "/" ||
+          lastVal == "."
+        ) {
+          document.getElementById(id).value = txtValue;
+        } else {
+          document.getElementById(id).value = "";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 4</title>
+  </head>
+  <body>
+    <input type="radio" name="tech" value="A" id="r1" />Grade A<br />
+    <input type="radio" name="tech" value="B" id="r2" checked />Grade B<br />
+    <input type="radio" name="tech" value="C" id="r3" />Grade C<br />
+    <input type="radio" name="tech" value="D" id="r4" />Grade D<br />
+    <button onclick="status()">Display Status and Value</button>
+    <script>
+      function status() {
+        let value = "";
+        let r1 = document.getElementById("r1");
+        if (r1.checked) {
+          value = r1.value;
+        }
+        let r2 = document.getElementById("r2");
+        if (r2.checked) {
+          value = r2.value;
+        }
+        let r3 = document.getElementById("r3");
+        if (r3.checked) {
+          value = r3.value;
+        }
+        let r4 = document.getElementById("r4");
+        if (r4.checked) {
+          value = r4.value;
+        }
+        console.log("Grade A", r1.checked);
+        console.log("Grade B", r2.checked);
+        console.log("Grade C", r3.checked);
+        console.log("Grade D", r4.checked);
+        console.log("Selected Value= ", value);
+      }
+    </script>
+  </body>
+</html>

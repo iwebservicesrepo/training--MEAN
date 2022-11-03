@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 2</title>
+  </head>
+  <body>
+    Choose your subjects:<br />
+    <input type="checkbox" id="math" checked />Mathematics<br />
+    <input type="checkbox" id="phy" />Physics<br />
+    <input type="checkbox" id="chem" />Chemistry<br />
+    <input type="checkbox" id="eng" checked />English<br />
+    <button onclick="status()">Display Status</button>
+    <script>
+      function status() {
+        let math = document.getElementById("math");
+        let physics = document.getElementById("phy");
+        let chemistry = document.getElementById("chem");
+        let english = document.getElementById("eng");
+        console.log("Mathematics", math.checked);
+        console.log("Physics", physics.checked);
+        console.log("Chemistry", chemistry.checked);
+        console.log("English", english.checked);
+      }
+    </script>
+  </body>
+</html>

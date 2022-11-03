@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 4</title>
+  </head>
+  <body>
+    <section>
+      <form onsubmit="addPerson(event)">
+        <div>
+          Name:<input
+            id="name"
+            type="text"
+            onchange="validateForm(event)"
+          /><br />
+          <span id="error_name" class="errMsg"></span>
+        </div>
+        <div>
+          Age:<input
+            type="text"
+            id="age"
+            onchange="validateForm(event)"
+          /><br />
+          <span id="error_age" class="errMsg"></span>
+        </div>
+        <div>
+          City:<input
+            type="text"
+            id="city"
+            onchange="validateForm(event)"
+          /><br />
+          <span id="error_city" class="errMsg"></span>
+        </div>
+        <div>
+          Technology:<input
+            type="text"
+            id="tech"
+            onchange="validateForm(event)"
+          /><br />
+          <span id="error_tech" class="errMsg"></span>
+        </div>
+        <div>
+          <button type="submit" disabled="true" id="addBtn">Add Person</button>
+        </div>
+      </form>
+    </section>
+    <!-- <section>
+        <div>
+          Name:<input id="name" type="text" onchange="newName(id)" /><br />
+          <span id="errorName" class="errMsg"></span>
+        </div>
+        <div>
+          Age:<input type="text" id="age" onchange="age(id)" /><br />
+          <span id="errorAge" class="errMsg"></span>
+        </div>
+        <div>
+          City:<input type="text" id="city" onchange="city(id)" /><br />
+          <span id="errorCity" class="errMsg"></span>
+        </div>
+        <div>
+          Technology:<input type="text" id="tech" onchange="tech(id)" /><br />
+          <span id="errorTech" class="errMsg"></span>
+        </div>
+        <div>
+          <button onclick="addPerson()" id="addBtn">Add Person</button>
+        </div>
+      </section> -->
+    <style>
+      .errMsg {
+        color: red;
+      }
+    </style>
+    <div id="task4"></div>
+    <div id="error"></div>
+    <script>
+      const btn = document.getElementById("addBtn");
+      let element = document.getElementById("task4");
+      let people = [
+        { name: "Jack", age: 28, city: "London", tech: "Android" },
+        { name: "Mary", age: 32, city: "Paris", tech: "React" },
+        { name: "Bob", age: 35, city: "New York", tech: "Angular" },
+        { name: "Steve", age: 26, city: "Delhi", tech: "Spring" },
+      ];
+
+      const addPerson = (ev) => {
+        ev.preventDefault();
+        console.log(ev);
+        const name = document.getElementById("name").value;
+        const age = +document.getElementById("age").value;
+        const city = document.getElementById("city").value;
+        const tech = document.getElementById("tech").value;
+        const person = { name, age, city, tech };
+        people.push(person);
+        console.log(people);
+      };
+
+      function validateForm(event) {
+        console.log(event.target.value, event.target.id);
+        const { value, id } = event.target;
+
+        let errorFlag;
+
+        if (id === "name") {
+          errorFlag = people.find((ele) => {
+            return ele.name == value;
+          });
+          if (errorFlag) {
+            showError(id, "Name already exists. Choose a different name");
+          } else {
+            showError(id, "");
+          }
+          return false;
+        } else if (id === "age") {
+          errorFlag =
+            parseInt(value) < 18
+              ? showError(id, "Minimum age should be 18 years")
+              : showError(id, "");
+          return false;
+        } else if (id === "city") {
+          errorFlag = !people.find(function (ele) {
+            return ele.city.toLocaleLowerCase() == value.toLocaleLowerCase();
+          })
+            ? showError(id, "Enter a city from London,Paris,New York,Delhi")
+            : showError(id, "");
+          return false;
+        } else if (id === "tech") {
+          errorFlag = !people.find(function (ele) {
+            return ele.tech.toLocaleLowerCase() == value.toLocaleLowerCase();
+          })
+            ? showError(
+                id,
+                "Enter a technology from Android,React,Angular,Spring"
+              )
+            : showError(id, "");
+        }
+        // showError(id, errorFlag);
+        if (errorFlag === "") {
+          btn.disabled = false;
+        } else {
+          btn.disabled = true;
+        }
+      }
+
+      function showError(id, error) {
+        const errorDiv = document.getElementById(`error_${id}`);
+        errorDiv.innerHTML = error;
+        return error;
+      }
+    </script>
+  </body>
+</html>

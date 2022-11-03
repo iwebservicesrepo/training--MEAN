@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 5</title>
+  </head>
+  <body>
+    <script>
+      const students = [
+        { name: "Dave", js: 59, react: 64, node: 67 },
+        { name: "George", js: 58, react: 82, node: 65 },
+        { name: "William", js: 51, react: 56, node: 68 },
+        { name: "Anita", js: 62, react: 65, node: 56 },
+        { name: "Thomas", js: 68, react: 72, node: 75 },
+        { name: "Steve", js: 56, react: 51, node: 63 },
+        { name: "Julia", js: 47, react: 77, node: 72 },
+        { name: "Mary", js: 72, react: 55, node: 81 },
+      ];
+      //   const jsTotal = students.reduce((acc, curr) => {
+      //     acc += curr.js;
+      //     return acc;
+      //   }, 0);
+      //   console.log("Total marks in js: ", jsTotal);
+      //   const greaterMarks = students.filter((n) => {
+      //     return n.react > 70;
+      //   });
+      //   console.log(
+      //     "Number of students with more than 70 marks in react: ",
+      //     greaterMarks.length
+      //   );
+      //   const highestInNode = students.reduce((acc, curr) => {
+      //     return acc.node > curr.node ? acc : curr;
+      //   });
+      //   console.log("Student with highest marks in node: ", highestInNode);
+      //   const studentArr = students.filter((n) => {
+      //     return n.js > 60;
+      //   });
+      //   console.log(
+      //     "Array of students with more than 60 marks in JS",
+      //     studentArr
+      //   );
+      //   const total = students.filter((n) => {
+      //     return n.js + n.react + n.node > 175;
+      //   });
+      //   console.log("Array of students with total marks greater than 175", total);
+      //   const grades = students.map((n) => {
+      //     return n.js >= 75
+      //       ? (n.gradeinJS = "A")
+      //       : n.js >= 60 && n.js < 75
+      //       ? (n.gradeinJS = "B")
+      //       : (n.gradeinJS = "C");
+      //   });
+      //   console.log(grades);
+
+      const result = (studentMarks) => {
+        const result = {};
+        const marks = [...studentMarks];
+        result.totalJsMarks = marks.reduce((acc, curr) => {
+          acc += curr.js;
+          return acc;
+        }, 0);
+        result.studentsReactMarkAbove70 = marks.filter((n) => {
+          return n.react > 70;
+        }).length;
+
+        result.studentScoredHigestInNode = marks.reduce((acc, curr) => {
+          return acc.node > curr.node ? acc : curr;
+        });
+
+        result.studentsJsMarksAbove60 = marks.filter((n) => {
+          return n.js > 60;
+        });
+        result.studentTotalMarksAbove175 = marks.filter((n) => {
+          return n.js + n.react + n.node > 175;
+        });
+        result.studentGrades = marks.map((student) => {
+          const tempStudent = { ...student };
+          tempStudent.reactGrade =
+            tempStudent.react < 60
+              ? "C"
+              : tempStudent.react >= 60 && tempStudent.react < 75
+              ? "B"
+              : "A";
+          tempStudent.jsGrade =
+            tempStudent.js < 60
+              ? "C"
+              : tempStudent.js >= 60 && tempStudent.js < 75
+              ? "B"
+              : "A";
+          tempStudent.nodeGrade =
+            tempStudent.node < 60
+              ? "C"
+              : tempStudent.node >= 60 && tempStudent.node < 75
+              ? "B"
+              : "A";
+          return tempStudent;
+        });
+        return result;
+      };
+      console.log(result(students));
+      //   const subjectGrades = students.map((student) => {
+      //     student.reactGrade =
+      //       student.react < 60
+      //         ? "C"
+      //         : student.react >= 60 && student.react < 75
+      //         ? "B"
+      //         : "A";
+      //     student.jsGrade =
+      //       student.js < 60
+      //         ? "C"
+      //         : student.js >= 60 && student.js < 75
+      //         ? "B"
+      //         : "A";
+      //     student.nodeGrade =
+      //       student.node < 60
+      //         ? "C"
+      //         : student.node >= 60 && student.node < 75
+      //         ? "B"
+      //         : "A";
+      //     return student;
+      //   });
+      //   console.log("student grades :: ==>", subjectGrades);
+    </script>
+  </body>
+</html>

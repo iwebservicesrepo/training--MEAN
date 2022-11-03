@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 12</title>
+  </head>
+  <body>
+    <script>
+      const arr = ["Hello", "Good", "Menx"];
+      let newArr = arr.map(function (ele) {
+        return ele.includes("x") ? "GotX" : "NotFound";
+      });
+      console.log(newArr);
+      const numArr = [89, 101, 30, 40, 200, 399];
+      let newNumArr = numArr.map(function (ele) {
+        return ele > 100 ? 10 + ele : ele - 25;
+      });
+      console.log(newNumArr);
+    </script>
+  </body>
+</html>

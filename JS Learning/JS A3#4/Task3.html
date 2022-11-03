@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 3</title>
+  </head>
+  <body>
+    <input type="checkbox" id="email" onchange="textbox()" />Use a different
+    mail id<br />
+    <div id="textVisible"></div>
+    <script>
+      function textbox() {
+        let check = document.getElementById("email");
+        let text =
+          '<input type="text" id="mail" placeholder="Enter the other email id"/>';
+        if (check.checked) {
+          document.getElementById("textVisible").innerHTML = text;
+        } else {
+          document.getElementById("textVisible").innerHTML = "";
+        }
+      }
+    </script>
+  </body>
+</html>

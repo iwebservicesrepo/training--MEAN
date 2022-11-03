@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 6</title>
+  </head>
+  <body>
+    <script>
+      //6.1
+      const maxNum = (num1 = 0, num2 = 0, num3 = 0, num4 = 0) => {
+        const largest = Math.max(num1, num2, num3, num4);
+        return largest;
+      };
+      console.log(maxNum(4, 6, 2, 9));
+      console.log(maxNum(4, 6, 2));
+      console.log(maxNum(4, 6));
+      console.log(maxNum(4));
+
+      //6.2
+      const calculateBill = (
+        price,
+        quantity,
+        discount = 5,
+        paymentType = "Credit Card"
+      ) => {
+        const additionalFee =
+          paymentType == "Credit Card"
+            ? price * quantity * 0.02
+            : paymentType == "Wallet"
+            ? price * quantity * 0.01
+            : price * quantity * 0.005;
+        const discountPrice = (discount / 100) * price * quantity;
+        const totalPrice = price * quantity + additionalFee - discountPrice;
+        console.log(additionalFee, discountPrice, totalPrice);
+      };
+      calculateBill(10, 20);
+      //6.3
+      const calculateBillJSON = (productJSON) => {
+        const {
+          price,
+          quantity,
+          discount = 5,
+          paymentType = "Credit Card",
+        } = productJSON;
+        const additionalFee =
+          paymentType == "Credit Card"
+            ? price * quantity * 0.02
+            : paymentType == "Wallet"
+            ? price * quantity * 0.01
+            : price * quantity * 0.005;
+        const discountPrice = (discount / 100) * price * quantity;
+        const totalPrice = price * quantity + additionalFee - discountPrice;
+        const newProductJSON = { ...productJSON, totalPrice: totalPrice };
+        console.log(newProductJSON);
+        console.log(productJSON);
+      };
+      calculateBillJSON({
+        price: 10,
+        quantity: 20,
+        discount: 10,
+        paymentType: "Wallet",
+      });
+    </script>
+  </body>
+</html>

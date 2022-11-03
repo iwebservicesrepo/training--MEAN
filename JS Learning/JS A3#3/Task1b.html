@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 1b</title>
+    <style>
+      .errMsg {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    Text1:<input
+      type="text"
+      id="txt1"
+      placeholder="Enter the Name"
+      onblur="check(this)"
+    /><br />
+    <div id="d1"></div>
+    <button id="btn1">Submit</button>
+    <script>
+      function check(elem) {
+        let txtField = document.getElementById("txt1");
+        let txt = txtField.value;
+        if (txt.length < 6) {
+          let errDiv = document.getElementById("d1");
+          errDiv.innerHTML = "Name should be atleast 6 characters";
+          errDiv.className = "errMsg";
+          let btn = document.getElementById("btn1");
+          btn.disabled = true;
+        } else {
+          let errDiv = document.getElementById("d1");
+          errDiv.innerHTML = "";
+          errDiv.className = "";
+          let btn = document.getElementById("btn1");
+          btn.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>
